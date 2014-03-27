@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<statemachine>
+  <property type="System.Boolean" name="Binary_Files" />
+  <property type="System.Boolean" name="Source_Code" />
+  <property type="System.Boolean" name="HAL_2012" />
+  <property type="System.Boolean" name="Documentation" />
+  <property type="System.String" name="Path" />
+  <state name="Configuration">
+    <event name="Cancel" state="Cancelled" />
+    <state name="Introduction" initial="true">
+      <event name="Next" state="Components" />
+    </state>
+    <state name="Components">
+      <event name="Back" state="Introduction" />
+      <event name="Next" state="ChoosePath">
+        <guard error="Please enable at least one component.">Binary_Files || Source_Code || HAL_2012 || Documentation</guard>
+      </event>
+      <property visible="true" name="Binary_Files" />
+      <property visible="true" name="Source_Code" />
+      <property visible="true" name="HAL_2012" />
+      <property visible="true" name="Documentation" />
+    </state>
+    <state name="ChoosePath">
+      <property visible="true" name="Path" />
+      <event name="Back" state="Components" />
+      <event name="Next" state="Installation">
+        <guard error="The directory you specified already exists.">!Directory.Exists(Path)</guard>
+      </event>
+    </state>
+  </state>
+    <state name="Installation">
+      <entryAction>Directory.CreateDirectory(Path); File.Create(System.IO.Path.Combine(Path, &quot;test.tmp&quot;));</entryAction>
+      <exitAction>
+        File.Delete(System.IO.Path.Combine(Path, &quot;test.tmp&quot;));
+      </exitAction>
+      <event name="Cancel" state="Cancelled">
+        <action>Directory.Delete(Path);</action>
+      </event>
+    </state>
+  <state name="Cancelled" />
+  <state name="Finished" />
+</statemachine>

@@ -1,0 +1,5 @@
+D:\Projects\WizardCreator\WizardLibrary\bin\Debug\WizardLibrary.dll
+D:\Projects\WizardCreator\WizardLibrary\bin\Debug\WizardLibrary.pdb
+D:\Projects\WizardCreator\WizardLibrary\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\WizardCreator\WizardLibrary\obj\Debug\WizardLibrary.dll
+D:\Projects\WizardCreator\WizardLibrary\obj\Debug\WizardLibrary.pdb
